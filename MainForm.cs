@@ -113,20 +113,59 @@ namespace App_Projeto_IS_202324
                 return;
             }
             //change bellow
-            var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
-            request.RequestFormat = RestSharp.DataFormat.Xml;
-            request.AddXmlBody(xmlDoc);
-
-            RestResponse response = client.Execute(request);
-            if (response.IsSuccessStatusCode)
+            //if button is create then post else put 
+            if (btnCreateNewApplication.Text == "Create")
             {
-                //fetchAllApplicationsRequest();
-                textBoxNewApplication.Clear();
+                var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
+                request.RequestFormat = RestSharp.DataFormat.Xml;
+                request.AddXmlBody(xmlDoc);
+
+                RestResponse response = client.Execute(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    getAllApplicationsRequest();
+                    textBoxNewApplication.Clear();
+                    //go get all applications again
+                }
+                else
+                {
+                    MessageBox.Show(response.Content);
+                }
             }
             else
             {
-                MessageBox.Show(response.Content);
+                string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
+                var request = new RestSharp.RestRequest("/" + applicationSelected, RestSharp.Method.Put);
+                request.RequestFormat = RestSharp.DataFormat.Xml;
+                request.AddXmlBody(xmlDoc);
+
+                RestResponse response = client.Execute(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    getAllApplicationsRequest();
+                    textBoxNewApplication.Clear();
+                    btnCreateNewApplication.Text = "Create";
+                }
+                else
+                {
+                    MessageBox.Show(response.Content);
+                }
             }
+
+            //var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
+            //request.RequestFormat = RestSharp.DataFormat.Xml;
+            //request.AddXmlBody(xmlDoc);
+
+            //RestResponse response = client.Execute(request);
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    //fetchAllApplicationsRequest();
+            //    textBoxNewApplication.Clear();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(response.Content);
+            //}
 
         }
 
