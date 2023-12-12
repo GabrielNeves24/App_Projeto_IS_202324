@@ -64,8 +64,9 @@
             this.listBoxData = new System.Windows.Forms.ListBox();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.textBoxSendMessage = new System.Windows.Forms.TextBox();
-            this.listBoxMessages = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.listBoxMessages = new System.Windows.Forms.ListBox();
             this.groupBoxApplication.SuspendLayout();
             this.groupBoxContainer.SuspendLayout();
             this.groupBoxSubscription.SuspendLayout();
@@ -195,6 +196,7 @@
             this.listBoxContainer.Name = "listBoxContainer";
             this.listBoxContainer.Size = new System.Drawing.Size(196, 160);
             this.listBoxContainer.TabIndex = 35;
+            this.listBoxContainer.SelectedIndexChanged += new System.EventHandler(this.listBoxContainer_SelectedIndexChanged);
             // 
             // btnGetAllContainers
             // 
@@ -254,6 +256,9 @@
             // 
             // groupBoxSubscription
             // 
+            this.groupBoxSubscription.Controls.Add(this.label6);
+            this.groupBoxSubscription.Controls.Add(this.listBoxMessages);
+            this.groupBoxSubscription.Controls.Add(this.label7);
             this.groupBoxSubscription.Controls.Add(this.label5);
             this.groupBoxSubscription.Controls.Add(this.label3);
             this.groupBoxSubscription.Controls.Add(this.comboBoxEvento);
@@ -265,7 +270,7 @@
             this.groupBoxSubscription.Controls.Add(this.label4);
             this.groupBoxSubscription.Location = new System.Drawing.Point(796, 42);
             this.groupBoxSubscription.Name = "groupBoxSubscription";
-            this.groupBoxSubscription.Size = new System.Drawing.Size(534, 340);
+            this.groupBoxSubscription.Size = new System.Drawing.Size(534, 461);
             this.groupBoxSubscription.TabIndex = 40;
             this.groupBoxSubscription.TabStop = false;
             this.groupBoxSubscription.Text = "Subscription (Select Container First)";
@@ -408,30 +413,37 @@
             this.textBoxSendMessage.Size = new System.Drawing.Size(196, 20);
             this.textBoxSendMessage.TabIndex = 32;
             // 
-            // listBoxMessages
+            // label7
             // 
-            this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(395, 369);
-            this.listBoxMessages.Name = "listBoxMessages";
-            this.listBoxMessages.Size = new System.Drawing.Size(395, 134);
-            this.listBoxMessages.TabIndex = 42;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(143, 241);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(307, 13);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "Fazer aqui apos selecionar container mostrar subscrições ativas";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(395, 350);
+            this.label6.Location = new System.Drawing.Point(11, 291);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 13);
-            this.label6.TabIndex = 43;
+            this.label6.TabIndex = 46;
             this.label6.Text = "Eventos Recebidos";
+            // 
+            // listBoxMessages
+            // 
+            this.listBoxMessages.FormattingEnabled = true;
+            this.listBoxMessages.Location = new System.Drawing.Point(11, 310);
+            this.listBoxMessages.Name = "listBoxMessages";
+            this.listBoxMessages.Size = new System.Drawing.Size(494, 134);
+            this.listBoxMessages.TabIndex = 45;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1374, 595);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.listBoxMessages);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubscription);
             this.Controls.Add(this.btnClose);
@@ -450,7 +462,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -491,8 +502,9 @@
         private System.Windows.Forms.ListBox listBoxData;
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox textBoxSendMessage;
-        private System.Windows.Forms.ListBox listBoxMessages;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox listBoxMessages;
+        private System.Windows.Forms.Label label7;
     }
 }
 

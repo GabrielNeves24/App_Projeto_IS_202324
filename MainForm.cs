@@ -184,6 +184,7 @@ namespace App_Projeto_IS_202324
             //se nao selecionar nada nao faz nada
             if (listBoxApplications.SelectedItem == null)
             {
+                comboBoxContainerInSubscription.Items.Clear();
                 return;
             }
             getAllContainersRequest();
@@ -268,6 +269,7 @@ namespace App_Projeto_IS_202324
 
         private void getAllContainersRequest()
         {
+            comboBoxContainerInSubscription.Items.Clear();
             string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
             labelApplicationName.Visible = true;
             labelApplicationName.Text = applicationSelected;
@@ -709,6 +711,11 @@ namespace App_Projeto_IS_202324
             {
                 MessageBox.Show(response.Content);
             }
+        }
+
+        private void listBoxContainer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
