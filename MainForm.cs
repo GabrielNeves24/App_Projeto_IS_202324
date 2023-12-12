@@ -114,7 +114,7 @@ namespace App_Projeto_IS_202324
             }
             //change bellow
             //if button is create then post else put 
-            if (btnCreateNewApplication.Text == "Create")
+            if (btnCreateNewApplication.Text == "Create new")
             {
                 var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
                 request.RequestFormat = RestSharp.DataFormat.Xml;
@@ -347,6 +347,21 @@ namespace App_Projeto_IS_202324
             {
                 MessageBox.Show(response.Content);
             }
+        }
+
+        private void btnRemoverSelecionado_Click(object sender, EventArgs e)
+        {
+            listBoxApplications.ClearSelected();
+            btnCreateNewApplication.Text = "Create new";
+            textBoxNewApplication.Clear();
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            
+
         }
     }
 }

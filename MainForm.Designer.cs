@@ -39,13 +39,15 @@
             this.textBoxNewApplication = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxContainer = new System.Windows.Forms.GroupBox();
+            this.labelApplicationName = new System.Windows.Forms.Label();
             this.btnDeleteContainer = new System.Windows.Forms.Button();
             this.listBoxContainer = new System.Windows.Forms.ListBox();
             this.btnGetAllContainers = new System.Windows.Forms.Button();
             this.btnCreateNewContainer = new System.Windows.Forms.Button();
             this.textBoxNewContainer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelApplicationName = new System.Windows.Forms.Label();
+            this.btnRemoverSelecionado = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBoxApplication.SuspendLayout();
             this.groupBoxContainer.SuspendLayout();
             this.SuspendLayout();
@@ -62,15 +64,16 @@
             // 
             // groupBoxApplication
             // 
+            this.groupBoxApplication.Controls.Add(this.btnRemoverSelecionado);
             this.groupBoxApplication.Controls.Add(this.btnDeleteApplication);
             this.groupBoxApplication.Controls.Add(this.listBoxApplications);
             this.groupBoxApplication.Controls.Add(this.btnGetAllApplications);
             this.groupBoxApplication.Controls.Add(this.btnCreateNewApplication);
             this.groupBoxApplication.Controls.Add(this.textBoxNewApplication);
             this.groupBoxApplication.Controls.Add(this.label1);
-            this.groupBoxApplication.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxApplication.Location = new System.Drawing.Point(12, 42);
             this.groupBoxApplication.Name = "groupBoxApplication";
-            this.groupBoxApplication.Size = new System.Drawing.Size(394, 235);
+            this.groupBoxApplication.Size = new System.Drawing.Size(361, 235);
             this.groupBoxApplication.TabIndex = 31;
             this.groupBoxApplication.TabStop = false;
             this.groupBoxApplication.Text = "Application";
@@ -79,7 +82,7 @@
             // 
             this.btnDeleteApplication.Location = new System.Drawing.Point(225, 72);
             this.btnDeleteApplication.Name = "btnDeleteApplication";
-            this.btnDeleteApplication.Size = new System.Drawing.Size(109, 23);
+            this.btnDeleteApplication.Size = new System.Drawing.Size(123, 23);
             this.btnDeleteApplication.TabIndex = 38;
             this.btnDeleteApplication.Text = "Delete";
             this.btnDeleteApplication.UseVisualStyleBackColor = true;
@@ -98,7 +101,7 @@
             // 
             this.btnGetAllApplications.Location = new System.Drawing.Point(225, 206);
             this.btnGetAllApplications.Name = "btnGetAllApplications";
-            this.btnGetAllApplications.Size = new System.Drawing.Size(109, 23);
+            this.btnGetAllApplications.Size = new System.Drawing.Size(123, 23);
             this.btnGetAllApplications.TabIndex = 34;
             this.btnGetAllApplications.Text = "Gell All Aplications";
             this.btnGetAllApplications.UseVisualStyleBackColor = true;
@@ -108,7 +111,7 @@
             // 
             this.btnCreateNewApplication.Location = new System.Drawing.Point(225, 43);
             this.btnCreateNewApplication.Name = "btnCreateNewApplication";
-            this.btnCreateNewApplication.Size = new System.Drawing.Size(109, 23);
+            this.btnCreateNewApplication.Size = new System.Drawing.Size(123, 23);
             this.btnCreateNewApplication.TabIndex = 33;
             this.btnCreateNewApplication.Text = "Create new";
             this.btnCreateNewApplication.UseVisualStyleBackColor = true;
@@ -139,12 +142,22 @@
             this.groupBoxContainer.Controls.Add(this.btnCreateNewContainer);
             this.groupBoxContainer.Controls.Add(this.textBoxNewContainer);
             this.groupBoxContainer.Controls.Add(this.label2);
-            this.groupBoxContainer.Location = new System.Drawing.Point(412, 12);
+            this.groupBoxContainer.Location = new System.Drawing.Point(386, 42);
             this.groupBoxContainer.Name = "groupBoxContainer";
             this.groupBoxContainer.Size = new System.Drawing.Size(394, 235);
             this.groupBoxContainer.TabIndex = 39;
             this.groupBoxContainer.TabStop = false;
             this.groupBoxContainer.Text = "Container";
+            // 
+            // labelApplicationName
+            // 
+            this.labelApplicationName.AutoSize = true;
+            this.labelApplicationName.Location = new System.Drawing.Point(222, 16);
+            this.labelApplicationName.Name = "labelApplicationName";
+            this.labelApplicationName.Size = new System.Drawing.Size(57, 13);
+            this.labelApplicationName.TabIndex = 39;
+            this.labelApplicationName.Text = "App Name";
+            this.labelApplicationName.Visible = false;
             // 
             // btnDeleteContainer
             // 
@@ -199,23 +212,35 @@
             this.label2.TabIndex = 31;
             this.label2.Text = "Container Name";
             // 
-            // labelApplicationName
+            // btnRemoverSelecionado
             // 
-            this.labelApplicationName.AutoSize = true;
-            this.labelApplicationName.Location = new System.Drawing.Point(236, 16);
-            this.labelApplicationName.Name = "labelApplicationName";
-            this.labelApplicationName.Size = new System.Drawing.Size(57, 13);
-            this.labelApplicationName.TabIndex = 39;
-            this.labelApplicationName.Text = "App Name";
-            this.labelApplicationName.Visible = false;
+            this.btnRemoverSelecionado.Location = new System.Drawing.Point(225, 101);
+            this.btnRemoverSelecionado.Name = "btnRemoverSelecionado";
+            this.btnRemoverSelecionado.Size = new System.Drawing.Size(123, 23);
+            this.btnRemoverSelecionado.TabIndex = 39;
+            this.btnRemoverSelecionado.Text = "Remover Selecionado";
+            this.btnRemoverSelecionado.UseVisualStyleBackColor = true;
+            this.btnRemoverSelecionado.Click += new System.EventHandler(this.btnRemoverSelecionado_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(12, 283);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(768, 23);
+            this.btnClose.TabIndex = 40;
+            this.btnClose.Text = "Sair";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 454);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBoxContainer);
             this.Controls.Add(this.groupBoxApplication);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.groupBoxApplication.ResumeLayout(false);
@@ -245,6 +270,8 @@
         private System.Windows.Forms.TextBox textBoxNewContainer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelApplicationName;
+        private System.Windows.Forms.Button btnRemoverSelecionado;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 
