@@ -57,7 +57,8 @@ namespace App_Projeto_IS_202324
             getAllApplicationsRequest();
             comboBoxEvento.Items.Add("creation");
             comboBoxEvento.Items.Add("deletion");
-            comboBoxEvento.Items.Add("both");
+            //comboBoxEvento.Items.Add("both");
+
         }
         private List<T> FetchRequestToURLByRequestType<T>(string url, Method methodType)
         {
@@ -81,6 +82,7 @@ namespace App_Projeto_IS_202324
             {
                 string name = item.ToString();
                 listBoxApplications.Items.Add(item.name);
+                comboBoxAppClient.Items.Add(item.name);
             }
         }
 
@@ -715,7 +717,109 @@ namespace App_Projeto_IS_202324
 
         private void listBoxContainer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //after select show on listBoxSubscription the subscriptions for that container
+            string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
+            string containerSelected = listBoxContainer.GetItemText(listBoxContainer.SelectedItem);
+            if (applicationSelected == null || applicationSelected == "")
+            {
+                MessageBox.Show("No Application selected");
+                return;
+            }
 
+            if (containerSelected == null || containerSelected == "")
+            {
+                MessageBox.Show("No Container selected");
+                return;
+            }
+
+            var subscriptionData = FetchRequestToURLByRequestType<Subscription>("/" + applicationSelected + "/" + containerSelected + "/subscription", Method.Get);
+
+            listBoxSubscription.Items.Clear();
+            if (subscriptionData == null || subscriptionData.Count == 0)
+            {
+                MessageBox.Show("No subscriptions exist for this container");
+                return;
+            }
+            foreach (Subscription item in subscriptionData)
+            {
+                listBoxSubscription.Items.Add(item.id + ". " + item.endpoint);
+            }
+
+        }
+
+        private void comboBoxEvento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOuvir_Click(object sender, EventArgs e)
+        {
+            string applicationSelected = comboBoxAppClient.GetItemText(comboBoxAppClient.SelectedItem);
+            string containerSelected = comboBoxContainerAppClient.GetItemText(comboBoxContainerAppClient.SelectedItem);
+            string eventType = "both";
+            try
+            {
+                FindAndReturnSubtopicNames(eventType, applicationSelected, containerSelected);
+                SubscribeToTopic(FindAndReturnSubtopicNames(eventType, applicationSelected, containerSelected), listBoxMessages);
+                labelConection.Visible = true;
+                labelConection.Text = "Connected";
+                labelConection.ForeColor = System.Drawing.Color.Green;
+                //lock button
+                btnOuvir.Enabled = false;
+            }catch(Exception ex)
+            {
+                labelConection.Visible = true;
+                labelConection.Text = "Not Connectioned";
+                labelConection.ForeColor = System.Drawing.Color.Red;
+            }
+
+        }
+
+        private void comboBoxAppClient_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxContainerAppClient.Items.Clear();
+            if (comboBoxAppClient.SelectedIndex == -1)
+            {
+                MessageBox.Show("No Application selected");
+                return;
+            }
+            
+            string applicationSelected = comboBoxAppClient.SelectedItem.ToString();
+            var containerData = FetchRequestToURLByRequestType<Container>("/" + applicationSelected + "/containers", Method.Get);
+
+            if (containerData == null || containerData.Count == 0)
+            {
+                MessageBox.Show("No containers exist for this application");
+                return;
+            }
+            foreach (Container item in containerData)
+            {
+                comboBoxContainerAppClient.Items.Add(item.name);
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+
+            string applicationSelected = comboBoxAppClient.GetItemText(comboBoxAppClient.SelectedItem);
+            string containerSelected = comboBoxContainerAppClient.GetItemText(comboBoxContainerAppClient.SelectedItem);
+            string eventType = "both";
+            try
+            {
+                FindAndReturnSubtopicNames(eventType, applicationSelected, containerSelected);
+                UnsubscribeFromTopic(FindAndReturnSubtopicNames(eventType, applicationSelected, containerSelected));
+                labelConection.Visible = true;
+                labelConection.Text = "Disconnected";
+                labelConection.ForeColor = System.Drawing.Color.Red;
+                //lock button
+                btnOuvir.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                labelConection.Visible = true;
+                labelConection.Text = "Not Connectioned";
+                labelConection.ForeColor = System.Drawing.Color.Red;
+            }
         }
     }
 }

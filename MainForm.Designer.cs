@@ -32,6 +32,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBoxApplication = new System.Windows.Forms.GroupBox();
+            this.btnRemoverSelecionado = new System.Windows.Forms.Button();
             this.btnDeleteApplication = new System.Windows.Forms.Button();
             this.listBoxApplications = new System.Windows.Forms.ListBox();
             this.btnGetAllApplications = new System.Windows.Forms.Button();
@@ -46,31 +47,39 @@
             this.btnCreateNewContainer = new System.Windows.Forms.Button();
             this.textBoxNewContainer = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRemoverSelecionado = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBoxSubscription = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxEvento = new System.Windows.Forms.ComboBox();
+            this.comboBoxContainerInSubscription = new System.Windows.Forms.ComboBox();
             this.btnDeleteSubscription = new System.Windows.Forms.Button();
             this.listBoxSubscription = new System.Windows.Forms.ListBox();
             this.btnSubscribe = new System.Windows.Forms.Button();
             this.textBoxSubscribeName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxContainerInSubscription = new System.Windows.Forms.ComboBox();
-            this.comboBoxEvento = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDeleteMessage = new System.Windows.Forms.Button();
             this.listBoxData = new System.Windows.Forms.ListBox();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.textBoxSendMessage = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxContainerAppClient = new System.Windows.Forms.ComboBox();
+            this.comboBoxAppClient = new System.Windows.Forms.ComboBox();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
+            this.btnOuvir = new System.Windows.Forms.Button();
+            this.labelConection = new System.Windows.Forms.Label();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.groupBoxApplication.SuspendLayout();
             this.groupBoxContainer.SuspendLayout();
             this.groupBoxSubscription.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -98,6 +107,16 @@
             this.groupBoxApplication.TabIndex = 31;
             this.groupBoxApplication.TabStop = false;
             this.groupBoxApplication.Text = "Application";
+            // 
+            // btnRemoverSelecionado
+            // 
+            this.btnRemoverSelecionado.Location = new System.Drawing.Point(225, 101);
+            this.btnRemoverSelecionado.Name = "btnRemoverSelecionado";
+            this.btnRemoverSelecionado.Size = new System.Drawing.Size(123, 23);
+            this.btnRemoverSelecionado.TabIndex = 39;
+            this.btnRemoverSelecionado.Text = "Remover Selecionado";
+            this.btnRemoverSelecionado.UseVisualStyleBackColor = true;
+            this.btnRemoverSelecionado.Click += new System.EventHandler(this.btnRemoverSelecionado_Click);
             // 
             // btnDeleteApplication
             // 
@@ -234,21 +253,11 @@
             this.label2.TabIndex = 31;
             this.label2.Text = "Container Name";
             // 
-            // btnRemoverSelecionado
-            // 
-            this.btnRemoverSelecionado.Location = new System.Drawing.Point(225, 101);
-            this.btnRemoverSelecionado.Name = "btnRemoverSelecionado";
-            this.btnRemoverSelecionado.Size = new System.Drawing.Size(123, 23);
-            this.btnRemoverSelecionado.TabIndex = 39;
-            this.btnRemoverSelecionado.Text = "Remover Selecionado";
-            this.btnRemoverSelecionado.UseVisualStyleBackColor = true;
-            this.btnRemoverSelecionado.Click += new System.EventHandler(this.btnRemoverSelecionado_Click);
-            // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 525);
+            this.btnClose.Location = new System.Drawing.Point(12, 531);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(1178, 23);
+            this.btnClose.Size = new System.Drawing.Size(1161, 23);
             this.btnClose.TabIndex = 40;
             this.btnClose.Text = "Sair";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -256,9 +265,6 @@
             // 
             // groupBoxSubscription
             // 
-            this.groupBoxSubscription.Controls.Add(this.label6);
-            this.groupBoxSubscription.Controls.Add(this.listBoxMessages);
-            this.groupBoxSubscription.Controls.Add(this.label7);
             this.groupBoxSubscription.Controls.Add(this.label5);
             this.groupBoxSubscription.Controls.Add(this.label3);
             this.groupBoxSubscription.Controls.Add(this.comboBoxEvento);
@@ -268,12 +274,49 @@
             this.groupBoxSubscription.Controls.Add(this.btnSubscribe);
             this.groupBoxSubscription.Controls.Add(this.textBoxSubscribeName);
             this.groupBoxSubscription.Controls.Add(this.label4);
-            this.groupBoxSubscription.Location = new System.Drawing.Point(796, 42);
+            this.groupBoxSubscription.Location = new System.Drawing.Point(12, 283);
             this.groupBoxSubscription.Name = "groupBoxSubscription";
-            this.groupBoxSubscription.Size = new System.Drawing.Size(534, 461);
+            this.groupBoxSubscription.Size = new System.Drawing.Size(554, 237);
             this.groupBoxSubscription.TabIndex = 40;
             this.groupBoxSubscription.TabStop = false;
             this.groupBoxSubscription.Text = "Subscription (Select Container First)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.TabIndex = 43;
+            this.label5.Text = "Evento";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Container";
+            // 
+            // comboBoxEvento
+            // 
+            this.comboBoxEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEvento.FormattingEnabled = true;
+            this.comboBoxEvento.Location = new System.Drawing.Point(109, 108);
+            this.comboBoxEvento.Name = "comboBoxEvento";
+            this.comboBoxEvento.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxEvento.TabIndex = 40;
+            this.comboBoxEvento.SelectedIndexChanged += new System.EventHandler(this.comboBoxEvento_SelectedIndexChanged);
+            // 
+            // comboBoxContainerInSubscription
+            // 
+            this.comboBoxContainerInSubscription.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxContainerInSubscription.FormattingEnabled = true;
+            this.comboBoxContainerInSubscription.Location = new System.Drawing.Point(109, 81);
+            this.comboBoxContainerInSubscription.Name = "comboBoxContainerInSubscription";
+            this.comboBoxContainerInSubscription.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxContainerInSubscription.TabIndex = 39;
             // 
             // btnDeleteSubscription
             // 
@@ -290,7 +333,7 @@
             this.listBoxSubscription.FormattingEnabled = true;
             this.listBoxSubscription.Location = new System.Drawing.Point(280, 43);
             this.listBoxSubscription.Name = "listBoxSubscription";
-            this.listBoxSubscription.Size = new System.Drawing.Size(196, 173);
+            this.listBoxSubscription.Size = new System.Drawing.Size(258, 173);
             this.listBoxSubscription.TabIndex = 35;
             // 
             // btnSubscribe
@@ -319,42 +362,6 @@
             this.label4.TabIndex = 31;
             this.label4.Text = "Subscription Name";
             // 
-            // comboBoxContainerInSubscription
-            // 
-            this.comboBoxContainerInSubscription.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxContainerInSubscription.FormattingEnabled = true;
-            this.comboBoxContainerInSubscription.Location = new System.Drawing.Point(109, 81);
-            this.comboBoxContainerInSubscription.Name = "comboBoxContainerInSubscription";
-            this.comboBoxContainerInSubscription.Size = new System.Drawing.Size(151, 21);
-            this.comboBoxContainerInSubscription.TabIndex = 39;
-            // 
-            // comboBoxEvento
-            // 
-            this.comboBoxEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEvento.FormattingEnabled = true;
-            this.comboBoxEvento.Location = new System.Drawing.Point(109, 108);
-            this.comboBoxEvento.Name = "comboBoxEvento";
-            this.comboBoxEvento.Size = new System.Drawing.Size(151, 21);
-            this.comboBoxEvento.TabIndex = 40;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 86);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Container";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "Evento";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button1);
@@ -362,7 +369,7 @@
             this.groupBox1.Controls.Add(this.listBoxData);
             this.groupBox1.Controls.Add(this.btnEnviar);
             this.groupBox1.Controls.Add(this.textBoxSendMessage);
-            this.groupBox1.Location = new System.Drawing.Point(12, 283);
+            this.groupBox1.Location = new System.Drawing.Point(798, 42);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(361, 235);
             this.groupBox1.TabIndex = 40;
@@ -398,7 +405,7 @@
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(225, 31);
+            this.btnEnviar.Location = new System.Drawing.Point(225, 38);
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(123, 23);
             this.btnEnviar.TabIndex = 33;
@@ -408,42 +415,132 @@
             // 
             // textBoxSendMessage
             // 
-            this.textBoxSendMessage.Location = new System.Drawing.Point(9, 31);
+            this.textBoxSendMessage.Location = new System.Drawing.Point(9, 39);
             this.textBoxSendMessage.Name = "textBoxSendMessage";
             this.textBoxSendMessage.Size = new System.Drawing.Size(196, 20);
             this.textBoxSendMessage.TabIndex = 32;
             // 
-            // label7
+            // label8
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(143, 241);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(307, 13);
-            this.label7.TabIndex = 44;
-            this.label7.Text = "Fazer aqui apos selecionar container mostrar subscrições ativas";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 24);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "AppMain";
             // 
-            // label6
+            // groupBox2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 291);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
-            this.label6.TabIndex = 46;
-            this.label6.Text = "Eventos Recebidos";
+            this.groupBox2.Controls.Add(this.btnDisconnect);
+            this.groupBox2.Controls.Add(this.labelConection);
+            this.groupBox2.Controls.Add(this.btnOuvir);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.comboBoxContainerAppClient);
+            this.groupBox2.Controls.Add(this.comboBoxAppClient);
+            this.groupBox2.Controls.Add(this.listBoxMessages);
+            this.groupBox2.Location = new System.Drawing.Point(581, 286);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(578, 232);
+            this.groupBox2.TabIndex = 42;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Cliente";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 24);
+            this.label9.TabIndex = 63;
+            this.label9.Text = "AppClient";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 13);
+            this.label11.TabIndex = 62;
+            this.label11.Text = "Application";
+            this.label11.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 91);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(52, 13);
+            this.label10.TabIndex = 61;
+            this.label10.Text = "Container";
+            // 
+            // comboBoxContainerAppClient
+            // 
+            this.comboBoxContainerAppClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxContainerAppClient.FormattingEnabled = true;
+            this.comboBoxContainerAppClient.Location = new System.Drawing.Point(76, 87);
+            this.comboBoxContainerAppClient.Name = "comboBoxContainerAppClient";
+            this.comboBoxContainerAppClient.Size = new System.Drawing.Size(144, 21);
+            this.comboBoxContainerAppClient.TabIndex = 60;
+            // 
+            // comboBoxAppClient
+            // 
+            this.comboBoxAppClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAppClient.FormattingEnabled = true;
+            this.comboBoxAppClient.Location = new System.Drawing.Point(76, 60);
+            this.comboBoxAppClient.Name = "comboBoxAppClient";
+            this.comboBoxAppClient.Size = new System.Drawing.Size(144, 21);
+            this.comboBoxAppClient.TabIndex = 59;
+            this.comboBoxAppClient.SelectedIndexChanged += new System.EventHandler(this.comboBoxAppClient_SelectedIndexChanged);
             // 
             // listBoxMessages
             // 
             this.listBoxMessages.FormattingEnabled = true;
-            this.listBoxMessages.Location = new System.Drawing.Point(11, 310);
+            this.listBoxMessages.Location = new System.Drawing.Point(245, 27);
             this.listBoxMessages.Name = "listBoxMessages";
-            this.listBoxMessages.Size = new System.Drawing.Size(494, 134);
-            this.listBoxMessages.TabIndex = 45;
+            this.listBoxMessages.Size = new System.Drawing.Size(212, 199);
+            this.listBoxMessages.TabIndex = 56;
+            // 
+            // btnOuvir
+            // 
+            this.btnOuvir.Location = new System.Drawing.Point(6, 173);
+            this.btnOuvir.Name = "btnOuvir";
+            this.btnOuvir.Size = new System.Drawing.Size(214, 23);
+            this.btnOuvir.TabIndex = 64;
+            this.btnOuvir.Text = "Subscribe(created already)";
+            this.btnOuvir.UseVisualStyleBackColor = true;
+            this.btnOuvir.Click += new System.EventHandler(this.btnOuvir_Click);
+            // 
+            // labelConection
+            // 
+            this.labelConection.AutoSize = true;
+            this.labelConection.Location = new System.Drawing.Point(80, 155);
+            this.labelConection.Name = "labelConection";
+            this.labelConection.Size = new System.Drawing.Size(59, 13);
+            this.labelConection.TabIndex = 65;
+            this.labelConection.Text = "Application";
+            this.labelConection.Visible = false;
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Location = new System.Drawing.Point(6, 203);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(214, 23);
+            this.btnDisconnect.TabIndex = 66;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1374, 595);
+            this.ClientSize = new System.Drawing.Size(1186, 571);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubscription);
             this.Controls.Add(this.btnClose);
@@ -461,7 +558,10 @@
             this.groupBoxSubscription.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -502,9 +602,17 @@
         private System.Windows.Forms.ListBox listBoxData;
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox textBoxSendMessage;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxContainerAppClient;
+        private System.Windows.Forms.ComboBox comboBoxAppClient;
         private System.Windows.Forms.ListBox listBoxMessages;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnOuvir;
+        private System.Windows.Forms.Label labelConection;
+        private System.Windows.Forms.Button btnDisconnect;
     }
 }
 
