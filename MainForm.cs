@@ -743,6 +743,7 @@ namespace App_Projeto_IS_202324
             foreach (Subscription item in subscriptionData)
             {
                 listBoxSubscription.Items.Add(item.id + ". " + item.endpoint);
+                subscriptionList.Add(new clientSubscriptions(item.id, item.endpoint, item.name));
             }
 
         }
@@ -800,7 +801,8 @@ namespace App_Projeto_IS_202324
 
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
-
+            //clear ListBox
+            listBoxMessages.Items.Clear();
             string applicationSelected = comboBoxAppClient.GetItemText(comboBoxAppClient.SelectedItem);
             string containerSelected = comboBoxContainerAppClient.GetItemText(comboBoxContainerAppClient.SelectedItem);
             string eventType = "both";

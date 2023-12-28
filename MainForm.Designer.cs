@@ -66,15 +66,15 @@
             this.textBoxSendMessage = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDisconnect = new System.Windows.Forms.Button();
+            this.labelConection = new System.Windows.Forms.Label();
+            this.btnOuvir = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxContainerAppClient = new System.Windows.Forms.ComboBox();
             this.comboBoxAppClient = new System.Windows.Forms.ComboBox();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
-            this.btnOuvir = new System.Windows.Forms.Button();
-            this.labelConection = new System.Windows.Forms.Label();
-            this.btnDisconnect = new System.Windows.Forms.Button();
             this.groupBoxApplication.SuspendLayout();
             this.groupBoxContainer.SuspendLayout();
             this.groupBoxSubscription.SuspendLayout();
@@ -114,7 +114,7 @@
             this.btnRemoverSelecionado.Name = "btnRemoverSelecionado";
             this.btnRemoverSelecionado.Size = new System.Drawing.Size(123, 23);
             this.btnRemoverSelecionado.TabIndex = 39;
-            this.btnRemoverSelecionado.Text = "Remover Selecionado";
+            this.btnRemoverSelecionado.Text = "Remove Selected";
             this.btnRemoverSelecionado.UseVisualStyleBackColor = true;
             this.btnRemoverSelecionado.Click += new System.EventHandler(this.btnRemoverSelecionado_Click);
             // 
@@ -382,7 +382,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 23);
             this.button1.TabIndex = 39;
-            this.button1.Text = "Remover Selecionado";
+            this.button1.Text = "Remove Selected";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // btnDeleteMessage
@@ -409,7 +409,7 @@
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(123, 23);
             this.btnEnviar.TabIndex = 33;
-            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.Text = "Send";
             this.btnEnviar.UseVisualStyleBackColor = true;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
@@ -447,6 +447,36 @@
             this.groupBox2.TabIndex = 42;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cliente";
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Location = new System.Drawing.Point(6, 203);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(214, 23);
+            this.btnDisconnect.TabIndex = 66;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            // 
+            // labelConection
+            // 
+            this.labelConection.AutoSize = true;
+            this.labelConection.Location = new System.Drawing.Point(80, 155);
+            this.labelConection.Name = "labelConection";
+            this.labelConection.Size = new System.Drawing.Size(59, 13);
+            this.labelConection.TabIndex = 65;
+            this.labelConection.Text = "Application";
+            this.labelConection.Visible = false;
+            // 
+            // btnOuvir
+            // 
+            this.btnOuvir.Location = new System.Drawing.Point(6, 173);
+            this.btnOuvir.Name = "btnOuvir";
+            this.btnOuvir.Size = new System.Drawing.Size(214, 23);
+            this.btnOuvir.TabIndex = 64;
+            this.btnOuvir.Text = "Subscribe";
+            this.btnOuvir.UseVisualStyleBackColor = true;
+            this.btnOuvir.Click += new System.EventHandler(this.btnOuvir_Click);
             // 
             // label9
             // 
@@ -504,36 +534,6 @@
             this.listBoxMessages.Size = new System.Drawing.Size(212, 199);
             this.listBoxMessages.TabIndex = 56;
             // 
-            // btnOuvir
-            // 
-            this.btnOuvir.Location = new System.Drawing.Point(6, 173);
-            this.btnOuvir.Name = "btnOuvir";
-            this.btnOuvir.Size = new System.Drawing.Size(214, 23);
-            this.btnOuvir.TabIndex = 64;
-            this.btnOuvir.Text = "Subscribe(created already)";
-            this.btnOuvir.UseVisualStyleBackColor = true;
-            this.btnOuvir.Click += new System.EventHandler(this.btnOuvir_Click);
-            // 
-            // labelConection
-            // 
-            this.labelConection.AutoSize = true;
-            this.labelConection.Location = new System.Drawing.Point(80, 155);
-            this.labelConection.Name = "labelConection";
-            this.labelConection.Size = new System.Drawing.Size(59, 13);
-            this.labelConection.TabIndex = 65;
-            this.labelConection.Text = "Application";
-            this.labelConection.Visible = false;
-            // 
-            // btnDisconnect
-            // 
-            this.btnDisconnect.Location = new System.Drawing.Point(6, 203);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(214, 23);
-            this.btnDisconnect.TabIndex = 66;
-            this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.UseVisualStyleBackColor = true;
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -546,7 +546,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBoxContainer);
             this.Controls.Add(this.groupBoxApplication);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
