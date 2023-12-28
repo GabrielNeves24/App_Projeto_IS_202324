@@ -473,7 +473,7 @@ namespace App_Projeto_IS_202324
             // Logic to listen to mqtt topic
             if (response.IsSuccessStatusCode)
             {
-                SubscribeToTopic(FindAndReturnSubtopicNames(eventType.ToString(), applicationSelected, containerSelected), listBoxMessages);
+                //SubscribeToTopic(FindAndReturnSubtopicNames(eventType.ToString(), applicationSelected, containerSelected), listBoxMessages);
                 XmlDocument newXmlObject = new XmlDocument();
                 newXmlObject.LoadXml(response.Content);
                 XmlNodeList xmlSubscriptionNodeList = newXmlObject.SelectNodes("//*[local-name()='Subscription']");

@@ -546,7 +546,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBoxContainer);
             this.Controls.Add(this.groupBoxApplication);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
