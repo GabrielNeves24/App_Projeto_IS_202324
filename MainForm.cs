@@ -873,5 +873,39 @@ namespace App_Projeto_IS_202324
                 labelConection.ForeColor = System.Drawing.Color.Red;
             }
         }
+
+        private void btnDeleteContainer_Click(object sender, EventArgs e)
+        {
+            //delete container
+            string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
+            string containerSelected = listBoxContainer.GetItemText(listBoxContainer.SelectedItem);
+            if (applicationSelected == null || applicationSelected == "")
+            {
+                MessageBox.Show("No Application selected");
+                return;
+            }
+            if(containerSelected == null || containerSelected == "")
+            {
+                MessageBox.Show("No Container selected");
+                return;
+            }
+            var request = new RestSharp.RestRequest("/" + applicationSelected + "/" + containerSelected, RestSharp.Method.Delete);
+            request.RequestFormat = RestSharp.DataFormat.Xml;
+
+            RestSharp.RestResponse response = client.Execute(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                getAllContainersRequest();
+                MessageBox.Show("Container deleted");   
+                listBoxSubscription.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show(response.Content);
+            }
+
+
+        }
     }
 }

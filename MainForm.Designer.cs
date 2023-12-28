@@ -207,6 +207,7 @@
             this.btnDeleteContainer.TabIndex = 38;
             this.btnDeleteContainer.Text = "Delete";
             this.btnDeleteContainer.UseVisualStyleBackColor = true;
+            this.btnDeleteContainer.Click += new System.EventHandler(this.btnDeleteContainer_Click);
             // 
             // listBoxContainer
             // 
