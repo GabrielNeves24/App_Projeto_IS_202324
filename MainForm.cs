@@ -352,6 +352,8 @@ namespace App_Projeto_IS_202324
             {
                 getAllContainersRequest();
                 textBoxNewContainer.Clear();
+                //reload 
+                comboBoxAppClient_SelectedIndexChanged(sender, e);
             }
             else
             {
