@@ -837,7 +837,25 @@ namespace App_Projeto_IS_202324
             listBoxMessages.Items.Clear();
             string applicationSelected = comboBoxAppClient.GetItemText(comboBoxAppClient.SelectedItem);
             string containerSelected = comboBoxContainerAppClient.GetItemText(comboBoxContainerAppClient.SelectedItem);
-            string eventType = "both";
+            string eventType = "";
+            //to eventType make a request to know if is creation or deletion or existes the 2
+            var subscriptionData = FetchRequestToURLByRequestType<Subscription>("/" + applicationSelected + "/" + containerSelected + "/subscription", Method.Get);
+            if (subscriptionData == null || subscriptionData.Count == 0)
+            {
+                MessageBox.Show("No subscriptions exist for this container");
+                return;
+            }
+            if (subscriptionData.Count == 1)
+            {
+                foreach (Subscription item in subscriptionData)
+                {
+                    eventType = item.endpoint.Split('/').Last();
+                }
+            }
+            if (subscriptionData.Count == 2)
+            {
+                eventType = "both";
+            }
             try
             {
                 FindAndReturnSubtopicNames(eventType, applicationSelected, containerSelected);
