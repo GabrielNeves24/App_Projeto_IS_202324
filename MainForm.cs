@@ -326,7 +326,7 @@ namespace App_Projeto_IS_202324
             XmlElement root = doc.CreateElement("Container");
             doc.AppendChild(root);
 
-            // Create xml with Module Name
+            // Create xml with Container Name
             XmlElement name = doc.CreateElement("name");
             name.InnerText = containerName;
 
