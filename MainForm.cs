@@ -57,8 +57,6 @@ namespace App_Projeto_IS_202324
             getAllApplicationsRequest();
             comboBoxEvento.Items.Add("creation");
             comboBoxEvento.Items.Add("deletion");
-            //comboBoxEvento.Items.Add("both");
-
         }
         private List<T> FetchRequestToURLByRequestType<T>(string url, Method methodType)
         {
@@ -119,8 +117,7 @@ namespace App_Projeto_IS_202324
                 MessageBox.Show("Invalid XML");
                 return;
             }
-            //change bellow
-            //if button is create then post else put 
+
             if (btnCreateNewApplication.Text == "Create new")
             {
                 var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
@@ -132,7 +129,7 @@ namespace App_Projeto_IS_202324
                 {
                     getAllApplicationsRequest();
                     textBoxNewApplication.Clear();
-                    //go get all applications again
+
                 }
                 else
                 {
@@ -159,21 +156,6 @@ namespace App_Projeto_IS_202324
                 }
             }
 
-            //var request = new RestSharp.RestRequest("", RestSharp.Method.Post);
-            //request.RequestFormat = RestSharp.DataFormat.Xml;
-            //request.AddXmlBody(xmlDoc);
-
-            //RestResponse response = client.Execute(request);
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    //fetchAllApplicationsRequest();
-            //    textBoxNewApplication.Clear();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(response.Content);
-            //}
-
         }
 
         private void btnGetAllApplications_Click(object sender, EventArgs e)
@@ -183,7 +165,7 @@ namespace App_Projeto_IS_202324
 
         private void listBoxApplications_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //se nao selecionar nada nao faz nada
+
             if (listBoxApplications.SelectedItem == null)
             {
                 comboBoxContainerInSubscription.Items.Clear();
@@ -194,52 +176,7 @@ namespace App_Projeto_IS_202324
             textBoxNewApplication.Text = listBoxApplications.SelectedItem.ToString();
             string applicationSelected = listBoxApplications.SelectedItem.ToString();
             string newApplicationName = textBoxNewApplication.Text;
-            //if (applicationSelected == null || applicationSelected == "")
-            //{
-            //    MessageBox.Show("No Application selected");
-            //    return;
-            //}
-
-            //if (newApplicationName == null || newApplicationName == "")
-            //{
-            //    MessageBox.Show("Empty application name");
-            //    return;
-            //}
-
-            //XmlDocument doc = new XmlDocument();
-
-            //try
-            //{
-            //    doc.Load("app_" + applicationSelected + @".xml");
-            //}
-            //catch (XmlException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-            //var namedoc = doc.SelectSingleNode("/Application");
-            //namedoc.SelectSingleNode("name").InnerText = newApplicationName;
-            //doc.Save("app_" + newApplicationName + @".xml");
-
-            ////ir buscar o xml com o content
-            //XElement xmlDoc = XElement.Load("app_" + newApplicationName + @".xml");
-
-            //var request = new RestSharp.RestRequest("/" + applicationSelected, RestSharp.Method.Put);
-            //request.RequestFormat = RestSharp.DataFormat.Xml;
-            //request.AddXmlBody(xmlDoc);
-
-            //RestSharp.RestResponse response = client.Execute(request);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    getAllApplicationsRequest();
-            //    textBoxNewApplication.Clear();
-            //    btnCreateNewApplication.Text = "Create";
-            //}
-            //else
-            //{
-            //    MessageBox.Show(response.Content);
-            //}
+            
         }
 
         private void btnDeleteApplication_Click(object sender, EventArgs e)
@@ -265,9 +202,6 @@ namespace App_Projeto_IS_202324
                 MessageBox.Show(response.Content);
             }
         }
-
-
-        //
 
         private void getAllContainersRequest()
         {
@@ -406,13 +340,13 @@ namespace App_Projeto_IS_202324
                 return;
             }
 
-            // Override eventType in case we already have either creation or deletion. We change both to the missing one
+
             if (eventType.ToString() == "both")
             {
                 List<clientSubscriptions> existingSubscriptionListForThisTopic = subscriptionList.FindAll(
                     s => s.eventos.Contains(applicationSelected + "/" + containerSelected + "/")
                 );
-                // Defaulting to creation, 
+
                 if (existingSubscriptionListForThisTopic.Count == 2)
                 {
                     MessageBox.Show("Both types of events are already active");
@@ -427,7 +361,7 @@ namespace App_Projeto_IS_202324
                     }
                 }
             }
-            // If we are both, we never find it in the list, so we create both
+
             clientSubscriptions subscription = subscriptionList.Find(
                 s => s.eventos == applicationSelected + "/" + containerSelected + "/" + eventType
             );
@@ -469,13 +403,12 @@ namespace App_Projeto_IS_202324
             var request = new RestSharp.RestRequest("/" + applicationSelected + "/" + containerSelected + "/subscription", RestSharp.Method.Post);
             request.RequestFormat = RestSharp.DataFormat.Xml;
             request.AddXmlBody(xmlDoc);
-            // Header forces request to be XML
+
             request.AddHeader("Accept", "application/xml");
             RestSharp.RestResponse response = client.Execute(request);
-            // Logic to listen to mqtt topic
+
             if (response.IsSuccessStatusCode)
             {
-                //SubscribeToTopic(FindAndReturnSubtopicNames(eventType.ToString(), applicationSelected, containerSelected), listBoxMessages);
                 XmlDocument newXmlObject = new XmlDocument();
                 newXmlObject.LoadXml(response.Content);
                 XmlNodeList xmlSubscriptionNodeList = newXmlObject.SelectNodes("//*[local-name()='Subscription']");
@@ -495,7 +428,7 @@ namespace App_Projeto_IS_202324
             }
         }
 
-        //Mqtt functions
+        //Mqtt
         public void SubscribeToTopic(string[] topicName, ListBox listBox)
         {
             byte[] mqtMsgBase = new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };
@@ -507,8 +440,7 @@ namespace App_Projeto_IS_202324
 
             clientMqtt.Subscribe(topicName, mqtMsgBase);
 
-            // Assign callback functions for each behavior of creation and deletion. When message is received, execute handleNotificationEventsClientSide
-            foreach (string topic in topicName)
+           foreach (string topic in topicName)
             {
                 clientMqtt.MqttMsgPublishReceived += (sender, e) => handleNotificationEventsClientSide(listBox, topic, sender, e);
             }
@@ -518,7 +450,7 @@ namespace App_Projeto_IS_202324
             clientMqtt.Unsubscribe(topicName);
         }
 
-        // Callback function that executes every message received event
+
         private void handleNotificationEventsClientSide(ListBox listBox, string topicName, object sender, MqttMsgPublishEventArgs e)
         {
             string messageReceived = $"{e.Topic}: {Encoding.UTF8.GetString(e.Message)}";
@@ -537,7 +469,7 @@ namespace App_Projeto_IS_202324
         private string[] FindAndReturnSubtopicNames(string evento, string application, string container)
         {
             string[] topicNames = { };
-            // if one or the other, we increase array size and add the new string[] to the end of the array
+
             if (evento == "creation" || evento == "deletion")
             {
                 Array.Resize(ref topicNames, topicNames.Length + 1);
@@ -833,12 +765,12 @@ namespace App_Projeto_IS_202324
 
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
-            //clear ListBox
+
             listBoxMessages.Items.Clear();
             string applicationSelected = comboBoxAppClient.GetItemText(comboBoxAppClient.SelectedItem);
             string containerSelected = comboBoxContainerAppClient.GetItemText(comboBoxContainerAppClient.SelectedItem);
             string eventType = "";
-            //to eventType make a request to know if is creation or deletion or existes the 2
+
             var subscriptionData = FetchRequestToURLByRequestType<Subscription>("/" + applicationSelected + "/" + containerSelected + "/subscription", Method.Get);
             if (subscriptionData == null || subscriptionData.Count == 0)
             {
@@ -863,7 +795,7 @@ namespace App_Projeto_IS_202324
                 labelConection.Visible = true;
                 labelConection.Text = "Disconnected";
                 labelConection.ForeColor = System.Drawing.Color.Red;
-                //lock button
+
                 btnOuvir.Enabled = true;
             }
             catch (Exception ex)
@@ -876,7 +808,7 @@ namespace App_Projeto_IS_202324
 
         private void btnDeleteContainer_Click(object sender, EventArgs e)
         {
-            //delete container
+
             string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
             string containerSelected = listBoxContainer.GetItemText(listBoxContainer.SelectedItem);
             if (applicationSelected == null || applicationSelected == "")
