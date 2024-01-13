@@ -839,5 +839,110 @@ namespace App_Projeto_IS_202324
 
 
         }
+
+        private void btnCreateXML_Click(object sender, EventArgs e)
+        {
+            string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
+            string containerSelected = listBoxApplications.GetItemText(listBoxContainer.SelectedItem);
+            var dataContent = textBoxSendMessage.Text;
+            if (applicationSelected == null || applicationSelected == "")
+            {
+                MessageBox.Show("No Application selected");
+                return;
+            }
+
+            if (containerSelected == null || containerSelected == "")
+            {
+                MessageBox.Show("No Container selected");
+                return;
+            }
+
+            if (dataContent == null || dataContent == "")
+            {
+                MessageBox.Show("No content set in message");
+                return;
+            }
+            // -------------------------Criar XML---------------------------------
+            XmlDocument doc = new XmlDocument();
+            // Create the XML Declaration, and append it to XML document
+            XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
+            doc.AppendChild(dec);
+
+            // Create the root element
+            XmlElement root = doc.CreateElement("Data");
+            // Set Attribute on Request element in order to know which type of XML object we want to access
+            doc.AppendChild(root);
+
+            // Create xml with Subscription Name
+            XmlElement content = doc.CreateElement("content");
+            content.InnerText = dataContent;
+
+            root.AppendChild(content);
+            // -------------------------FIM Criar XML---------------------------------
+
+            // Pergunta onde quer guardar o ficheiro
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            saveFileDialog.Title = "Save XML File";
+            saveFileDialog.FileName = "data_" + dataContent + ".xml";
+
+            //se guardar o ficheiro bem dá ok
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                doc.Save(filePath);
+                MessageBox.Show("Criado XML com sucesso");
+            }            
+        }
+
+        private void btnSendXML_Click(object sender, EventArgs e)
+        {
+            // Pergunta onde está o ficheiro
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            openFileDialog.Title = "Open XML File";
+            string applicationSelected = listBoxApplications.GetItemText(listBoxApplications.SelectedItem);
+            string containerSelected = listBoxApplications.GetItemText(listBoxContainer.SelectedItem);
+
+            // Se ficheiro for válido envia para a api
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                XElement xmlDoc = XElement.Load(filePath);
+                HandlerXML handle = new HandlerXML(filePath, @"data.xsd");
+                if (!handle.ValidateXML())
+                {
+                    MessageBox.Show("Invalid XML");
+                    return;
+                }
+
+                //pedido post
+                var request = new RestSharp.RestRequest("/" + applicationSelected + "/" + containerSelected + "/data", RestSharp.Method.Post);
+                request.RequestFormat = RestSharp.DataFormat.Xml;
+                request.AddXmlBody(xmlDoc);
+                request.AddHeader("Accept", "application/xml");
+                RestSharp.RestResponse response = client.Execute(request);
+
+                //pedido enviado e com resposta 200 sucesso então:
+                if (response.IsSuccessStatusCode)
+                {
+                    textBoxSendMessage.Clear();
+                    //carregar o ficheiro xml com a resposta e mostrar na listbox
+                    XmlDocument newXmlObject = new XmlDocument();
+                    newXmlObject.LoadXml(response.Content);
+                    XmlNodeList xmlDataNodeList = newXmlObject.SelectNodes("//*[local-name()='Data']");
+                    foreach (XmlNode item in xmlDataNodeList)
+                    {
+                        int dataId = int.Parse(item["id"].InnerText);
+                        dataList.Add(new clientData { ids = dataId, contents = item["content"].InnerText });
+                        listBoxData.Items.Add(dataId + ". " + item["content"].InnerText);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(response.Content);
+                }
+            }
+        }
     }
 }

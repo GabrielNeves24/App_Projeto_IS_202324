@@ -75,6 +75,8 @@
             this.comboBoxContainerAppClient = new System.Windows.Forms.ComboBox();
             this.comboBoxAppClient = new System.Windows.Forms.ComboBox();
             this.listBoxMessages = new System.Windows.Forms.ListBox();
+            this.btnCreateXML = new System.Windows.Forms.Button();
+            this.btnSendXML = new System.Windows.Forms.Button();
             this.groupBoxApplication.SuspendLayout();
             this.groupBoxContainer.SuspendLayout();
             this.groupBoxSubscription.SuspendLayout();
@@ -365,6 +367,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSendXML);
+            this.groupBox1.Controls.Add(this.btnCreateXML);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnDeleteMessage);
             this.groupBox1.Controls.Add(this.listBoxData);
@@ -379,7 +383,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(225, 101);
+            this.button1.Location = new System.Drawing.Point(225, 129);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 23);
             this.button1.TabIndex = 39;
@@ -388,7 +392,7 @@
             // 
             // btnDeleteMessage
             // 
-            this.btnDeleteMessage.Location = new System.Drawing.Point(225, 73);
+            this.btnDeleteMessage.Location = new System.Drawing.Point(225, 101);
             this.btnDeleteMessage.Name = "btnDeleteMessage";
             this.btnDeleteMessage.Size = new System.Drawing.Size(123, 23);
             this.btnDeleteMessage.TabIndex = 38;
@@ -399,14 +403,14 @@
             // listBoxData
             // 
             this.listBoxData.FormattingEnabled = true;
-            this.listBoxData.Location = new System.Drawing.Point(9, 69);
+            this.listBoxData.Location = new System.Drawing.Point(9, 95);
             this.listBoxData.Name = "listBoxData";
-            this.listBoxData.Size = new System.Drawing.Size(196, 160);
+            this.listBoxData.Size = new System.Drawing.Size(196, 134);
             this.listBoxData.TabIndex = 35;
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(225, 38);
+            this.btnEnviar.Location = new System.Drawing.Point(225, 66);
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(123, 23);
             this.btnEnviar.TabIndex = 33;
@@ -416,7 +420,7 @@
             // 
             // textBoxSendMessage
             // 
-            this.textBoxSendMessage.Location = new System.Drawing.Point(9, 39);
+            this.textBoxSendMessage.Location = new System.Drawing.Point(9, 66);
             this.textBoxSendMessage.Name = "textBoxSendMessage";
             this.textBoxSendMessage.Size = new System.Drawing.Size(196, 20);
             this.textBoxSendMessage.TabIndex = 32;
@@ -535,6 +539,26 @@
             this.listBoxMessages.Size = new System.Drawing.Size(212, 199);
             this.listBoxMessages.TabIndex = 56;
             // 
+            // btnCreateXML
+            // 
+            this.btnCreateXML.Location = new System.Drawing.Point(225, 11);
+            this.btnCreateXML.Name = "btnCreateXML";
+            this.btnCreateXML.Size = new System.Drawing.Size(123, 23);
+            this.btnCreateXML.TabIndex = 40;
+            this.btnCreateXML.Text = "CreateXML";
+            this.btnCreateXML.UseVisualStyleBackColor = true;
+            this.btnCreateXML.Click += new System.EventHandler(this.btnCreateXML_Click);
+            // 
+            // btnSendXML
+            // 
+            this.btnSendXML.Location = new System.Drawing.Point(225, 39);
+            this.btnSendXML.Name = "btnSendXML";
+            this.btnSendXML.Size = new System.Drawing.Size(123, 23);
+            this.btnSendXML.TabIndex = 41;
+            this.btnSendXML.Text = "SendXML";
+            this.btnSendXML.UseVisualStyleBackColor = true;
+            this.btnSendXML.Click += new System.EventHandler(this.btnSendXML_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,6 +638,8 @@
         private System.Windows.Forms.Button btnOuvir;
         private System.Windows.Forms.Label labelConection;
         private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.Button btnCreateXML;
+        private System.Windows.Forms.Button btnSendXML;
     }
 }
 
